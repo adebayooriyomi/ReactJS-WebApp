@@ -1,4 +1,4 @@
-# React JS Web Application Responsive News Feed
+# React JS Web Application -> Responsive News Feed
 
 A News Feeds powered by https://newsapi.org/
 
