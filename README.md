@@ -1,3 +1,17 @@
+# React JS Web Application Responsive News Feed
+
+A News Feeds powered by https://newsapi.org/
+
+<h2>Features</h2>
+<ul>
+  <li>News Top Stories</li>
+  <li>News Category</li>
+  <li>News Publishers</li>
+  <li>Material UI</li>
+</ul>
+
+<h2>Follow the Setup Instructions below to test the app</h2>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
