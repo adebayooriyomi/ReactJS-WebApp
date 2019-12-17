@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link, BrowserRouter as Router} from "react-router-dom";
+import { Switch, Route, Link, HashRouter as Router} from "react-router-dom";
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
