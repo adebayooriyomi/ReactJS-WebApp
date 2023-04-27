@@ -5,67 +5,62 @@ const apiKey = 'e8d28130c9414eb9ae3fa39c67553511'
 const dummyImageUrl = "https://dummyimage.com/600x400/f7f7f7/000000&text=N"
 
 export default {
-    async fetchHeadlines(newsId){
+  async fetchHeadlines(newsId) {
+    const fetchUrl = newsId ?
+      `${baseURL}/top-headlines?sources=${newsId}&apiKey=${apiKey}` :
+      `${baseURL}/top-headlines?country=us&apiKey=${apiKey}`;
 
-        //if fetchHeadlines is called with parameter = "newsId" fetchHeadlines with Sources "Id" parameter else fetch all topheadline from various news Publishers
-        const fetchUrl = newsId
-        ? baseURL+"/top-headlines?sources=" + newsId + "&apiKey="+apiKey
-        : baseURL+'/top-headlines?country=us&apiKey='+apiKey
-        try {
-          let response = await fetch(fetchUrl);
-          let responseJson = await response.json();
-          const articlesArray = []
-          const allArticles = responseJson.articles
+    try {
+      const response = await fetch(fetchUrl);
+      const responseJson = await response.json();
 
-          allArticles.forEach(function(obj){
-            // Convert All JSON Object value to String because some of them contains NULL
-             const article = {
-               source: String(obj.source.name),
-               title: (String(obj.title)),
-               url: String(obj.url),
-               //Replace Image url with placeholder url if it is NULL
-               urlToImage: String(obj.urlToImage === null ? dummyImageUrl : obj.urlToImage),
-               publishedAt: String(utils.formatDate(obj.publishedAt))
-             }
-             articlesArray.push(article)
-          })
-          return articlesArray;
+      const articlesArray = responseJson.articles && responseJson.articles.length > 0 ?
+      responseJson.articles.map(article => ({
+        source: String(article.source.name),
+        title: String(article.title),
+        url: String(article.url),
+        urlToImage: String(article.urlToImage || dummyImageUrl),
+        publishedAt: String(utils.formatDate(article.publishedAt))
+      })) :
+      [];
 
-        } catch (error) {
-          console.error(error);
-        }
-    },
+      return articlesArray;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  },
     // All named sources with English news
     async fetchSources(category) {
+      const queryParams = new URLSearchParams({
+        language: 'en',
+        apiKey,
+      });
+    
+      if (category) {
+        queryParams.set('category', category);
+      }
+    
+      const fetchUrl = `${baseURL}/sources?${queryParams.toString()}`;
+    
+      try {
+        const response = await fetch(fetchUrl);
+        const responseJson = await response.json();
 
-         //if called with parameter = "category" fetch with "category"  else fetch all 
-         const fetchUrl = category
-         ? baseURL+'/sources?category='+category+'&language=en&apiKey='+apiKey
-         : baseURL+'/sources?language=en&apiKey='+apiKey
+        const sourcesArray = responseJson.sources && responseJson.sources.length > 0 ? responseJson.sources.map((source) => ({
+          id: String(source.id),
+          name: String(source.name),
+          description: String(source.description),
+          url: String(source.url),
+          category: String(source.category),
+          language: String(source.language),
+        })) : 
+        [];
 
-        try {
-          let response = await fetch(fetchUrl);
-          const responseJson = await response.json();
-          console.log(responseJson)
-          const sourcesArray = []
-          const allSources = responseJson.sources
-
-          allSources.forEach(function(obj){
-            // Convert All JSON Object value to String because some of them contains NULL
-             const article = {
-               id: String(obj.id),
-               name: String(obj.name),
-               description: String(obj.description),
-               url: String(obj.url),
-               category: String(obj.category),
-               language: String(obj.language),
-             }
-             sourcesArray.push(article)
-           })
-          return sourcesArray;
-
-        } catch (error) {
-          console.error(error);
-        }
+        console.log(sourcesArray);
+        return sourcesArray;
+      } catch (error) {
+        console.error(error);
+      }
     }
 }
