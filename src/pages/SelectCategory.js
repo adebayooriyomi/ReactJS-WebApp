@@ -27,7 +27,7 @@ const SelectCategory = ({ match }) => {
                 setTitle(body[0].category)
             }
             fetchData();
-    }, []);
+    }, [category]);
 
 
     return (

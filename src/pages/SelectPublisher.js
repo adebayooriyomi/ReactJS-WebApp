@@ -27,7 +27,7 @@ const SelectPublisher = ({ match }) => {
                 setTitle(body[0].source)
             }
             fetchData();
-    }, []);
+    }, [newId]);
 
     return (
             <Grid container className={classes.root}>
