@@ -6,6 +6,12 @@ const useStyles = makeStyles(theme => ({
         width: 320,
         height: 370
       },
+      cardContent:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: 180,
+      },
       card2: {
         maxWidth: 320,
         width: 320,

@@ -8,3 +8,10 @@ export default {
     return formattedDate
   }
 }
+
+export function truncateSentence(sentence, maxLength) {
+  if (sentence.length <= maxLength) {
+    return sentence;
+  }
+  return sentence.slice(0, maxLength) + "...";
+} 

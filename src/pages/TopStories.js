@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import useStyles from '../useStyles'
+import { truncateSentence } from '../utils/utils';
 
 
 const TopStories = ({ match }) => {
@@ -38,12 +39,12 @@ const TopStories = ({ match }) => {
                                     image={data.urlToImage}
                                     title={data.title}
                                 />
-                                <CardContent>
+                                <CardContent className={classes.cardContent}>
                                     <Typography variant="caption" color="textSecondary">
                                     {data.source}
                                     </Typography>
                                     <Typography style={{fontWeight:"bold", lineHeight: 1.5}} gutterBottom variant="subtitle1" display="block">
-                                    {data.title}
+                                    {truncateSentence(data.title, 90)}
                                     </Typography>
                                     <Typography variant="caption" color="textSecondary">
                                     {data.publishedAt}
