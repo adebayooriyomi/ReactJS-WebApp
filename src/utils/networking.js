@@ -1,8 +1,8 @@
 import utils from './utils'
 
-const baseURL = 'https://newsapi.org/v2'
-const apiKey = 'e8d28130c9414eb9ae3fa39c67553511'
-const dummyImageUrl = "https://dummyimage.com/600x400/f7f7f7/000000&text=N"
+const baseURL = process.env.REACT_APP_BASE_URL
+const apiKey = process.env.REACT_APP_API_KEY
+const dummyImageUrl = process.env.REACT_DUMMY_URL
 
 export default {
   async fetchHeadlines(newsId) {
