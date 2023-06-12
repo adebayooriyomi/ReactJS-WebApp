@@ -46,16 +46,6 @@ export default {
         const response = await fetch(fetchUrl);
         const responseJson = await response.json();
         console.log(responseJson)
-        // const sourcesArray = responseJson.articles && responseJson.articles.length > 0 ? responseJson.articles.map((articles) => ({
-        //   title: String(articles.title),
-        //   name: String(articles.souces[0].name),
-        //   description: String(articles.description),
-        //   url: String(articles.url),
-        //   category: String(articles.category),
-        //   language: String(articles.language),
-        // })) : [];
-
-        // console.log(sourcesArray);
         return responseJson.articles;
       } catch (error) {
         console.error(error);
