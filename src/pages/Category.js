@@ -20,7 +20,7 @@ const Category = () => {
               id: 'business',
               title: 'Business',
               image: require('../images/business.jpg'),
-              icon: 'logo-usd'
+              icon: 'ios-globe'
             },
             {
               id: 'entertainment',
@@ -32,7 +32,7 @@ const Category = () => {
               id: 'general',
               title: 'General',
               image: require('../images/general.jpg'),
-              icon: 'ios-globe'
+              icon: 'logo-usd'
             },
             {
               id: 'health',
@@ -58,6 +58,12 @@ const Category = () => {
               image: require('../images/technology.jpg'),
               icon: 'ios-phone-portrait'
             },
+            {
+              id: 'world',
+              title: 'World',
+              image: require('../images/world.jpg'),
+              icon: 'ios-phone-portrait'
+            },
           ]
 
             setData(newsList);
@@ -66,33 +72,31 @@ const Category = () => {
 
     return (
             <Grid container className={classes.root}>
-                  <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
+                <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
                     Category
                 </Typography>
-                <Grid item xs={12}>
-                    <Grid container spacing={2}>
+                  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     {data.map((data, key) => (
-                        <Grid key={key} item>
+                       <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
                             <Link style={{textDecoration:"none"}} to={`/SelectCategory/${data.id}`}>
-                            <CardActionArea>
-                                <Card className={classes.card3}>                         
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={data.image}
-                                        title={data.title}
-                                    />
-                                    <CardContent> 
-                                    <Typography style={{fontWeight:"bold", lineHeight: 1.5}}  variant="subtitle1">
-                                        {data.title}
-                                    </Typography>
-                                    </CardContent>
-                                </Card>
-                            </CardActionArea>
+                              <CardActionArea>
+                                  <Card>                         
+                                      <CardMedia
+                                          className={classes.media}
+                                          image={data.image}
+                                          title={data.title}
+                                      />
+                                      <CardContent> 
+                                      <Typography style={{fontWeight:"bold", lineHeight: 1.5}}  variant="subtitle1">
+                                          {data.title}
+                                      </Typography>
+                                      </CardContent>
+                                  </Card>
+                              </CardActionArea>
                             </Link>
                         </Grid>
                     ))}
-                    </Grid>
-                </Grid>
+                  </Grid>
             </Grid>
         );
 }

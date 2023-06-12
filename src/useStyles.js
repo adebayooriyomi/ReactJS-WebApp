@@ -14,13 +14,16 @@ const useStyles = makeStyles(theme => ({
       },
       card2: {
         maxWidth: 320,
-        width: 320,
+        width: 100,
         height: 160
       },
       card3: {
         minWidth: 320,
         maxWidth: 320,
         height: 255
+      },
+      cardPad: {
+        padding: 10,
       },
       media: {
         height: 200,

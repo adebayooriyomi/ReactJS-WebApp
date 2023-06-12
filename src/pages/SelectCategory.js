@@ -5,11 +5,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
-import StarHalfRoundedIcon from '@material-ui/icons/StarHalfRounded';
-import Button from '@material-ui/core/Button';
-import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import { Link } from 'react-router-dom';
+import CardMedia from '@material-ui/core/CardMedia';
+import { truncateSentence } from '../utils/utils';
 import useStyles from '../useStyles'
+import {formatDate} from '../utils/utils'
 
 
 const SelectCategory = ({ match }) => {
@@ -24,50 +23,44 @@ const SelectCategory = ({ match }) => {
             const fetchData = async () => {
                 const body = await networking.fetchSources(category)
                 setData(body);
-                setTitle(body[0].category)
+                setTitle(category)
             }
             fetchData();
     }, [category]);
 
 
     return (
-            <Grid container className={classes.root}>
-                <Typography style={{marginBottom: 20, marginRight: 10}}>
-                    <Button size="small" variant="outlined" onClick={() => window.history.back()} className={classes.button}>
-                        <ArrowBackRoundedIcon/>
-                    </Button>
-                </Typography>
-                <Typography style={{fontWeight:"bold", marginBottom: 20, textTransform: 'capitalize'}} color="primary" variant="h6">
-                    
-                    {title}
-                </Typography>
-                <Grid item xs={12}>
-                    <Grid container spacing={2}>
-                    {data.map((data, key) => (
-                        <Grid key={key} item>
-                            <Link style={{textDecoration:"none"}} to={`/SelectPublisher/${data.id}`}>
-                            <CardActionArea>
-                                <Card className={classes.card2}> 
-                                    <CardContent>                                
-                                        <StarHalfRoundedIcon color="action"/>
-                                    <Typography style={{fontWeight:"bold", lineHeight: 1.5}}  variant="h6">
-                                        {data.name}
-                                        </Typography>
-                                        <Typography variant="body2" gutterBottom>
-                                        {data.category}
-                                        </Typography>
-                                        <Typography variant="body3" color="textSecondary" gutterBottom>
-                                        {data.description.substring(0, 150)}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </CardActionArea>
-                            </Link>
-                        </Grid>
-                    ))}
-                    </Grid>
+        <Grid container className={classes.root}>
+        <Typography style={{fontWeight:"bold", marginBottom: 20, textTransform: 'capitalize'}} color="primary" variant="h6">
+            {title}
+        </Typography>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            {data && data.map((data, key) => (
+                <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
+                    <CardActionArea onClick={() => window.open(data.url, "_blank")}>
+                    <Card>
+                        <CardMedia
+                            className={classes.media}
+                            image={data.image}
+                            title={data.title}
+                        />
+                        <CardContent className={classes.cardContent}>
+                            <Typography variant="caption" color="textSecondary">
+                            {data.source.name}
+                            </Typography>
+                            <Typography style={{fontWeight:"bold", lineHeight: 1.5}} gutterBottom variant="subtitle1" display="block">
+                            {truncateSentence(data.title, 90)}
+                            </Typography>
+                            <Typography variant="caption" color="textSecondary">
+                            {formatDate(data.publishedAt)}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                    </CardActionArea>
                 </Grid>
+            ))}
             </Grid>
+        </Grid>
         );
 }
 

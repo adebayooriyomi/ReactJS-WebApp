@@ -15,11 +15,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PublicIcon from '@material-ui/icons/Public';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import AppsIcon from '@material-ui/icons/Apps';
 import TopStories from './pages/TopStories'
-import Publishers from './pages/Publishers'
-import SelectPublisher from './pages/SelectPublisher'
 import Category from './pages/Category'
 import SelectCategory from './pages/SelectCategory';
 import { Typography } from '@material-ui/core';
@@ -76,7 +73,6 @@ function ResponsiveDrawer(props) {
       <List>{
           [
             {name: 'Top Stories', icon: PublicIcon}, 
-            {name: 'Publishers', icon: LibraryBooksIcon},
             {name: 'Category', icon: AppsIcon}
           ]
             .map((menu, key) => (
@@ -149,9 +145,7 @@ function ResponsiveDrawer(props) {
                 <TopStories />
               </div>
             }/>
-            <Route path="/Publishers" component={Publishers} />
             <Route path="/Category" component={Category} />
-            <Route path="/SelectPublisher/:id" component={SelectPublisher} />
             <Route path="/SelectCategory/:id" component={SelectCategory} />
           </Switch>
       </main>

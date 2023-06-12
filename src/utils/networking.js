@@ -1,4 +1,4 @@
-import utils from './utils'
+import {formatDate} from './utils'
 
 const baseURL = process.env.REACT_APP_BASE_URL
 const apiKey = process.env.REACT_APP_API_KEY
@@ -8,7 +8,7 @@ export default {
   async fetchHeadlines(newsId) {
     const fetchUrl = newsId ?
       `${baseURL}/top-headlines?sources=${newsId}&apiKey=${apiKey}` :
-      `${baseURL}/top-headlines?country=us&apiKey=${apiKey}`;
+      `${baseURL}/top-headlines?&lang=en&country=us&max=10&apikey=${apiKey}`;
 
     try {
       const response = await fetch(fetchUrl);
@@ -19,10 +19,9 @@ export default {
         source: String(article.source.name),
         title: String(article.title),
         url: String(article.url),
-        urlToImage: String(article.urlToImage || dummyImageUrl),
-        publishedAt: String(utils.formatDate(article.publishedAt))
-      })) :
-      [];
+        urlToImage: String(article.image || dummyImageUrl),
+        publishedAt: String(formatDate(article.publishedAt))
+      })) : [];
 
       return articlesArray;
     } catch (error) {
@@ -41,24 +40,23 @@ export default {
         queryParams.set('category', category);
       }
     
-      const fetchUrl = `${baseURL}/sources?${queryParams.toString()}`;
+      const fetchUrl = `${baseURL}/top-headlines?&lang=en&category=${category}&apikey=${apiKey}`;
     
       try {
         const response = await fetch(fetchUrl);
         const responseJson = await response.json();
+        console.log(responseJson)
+        // const sourcesArray = responseJson.articles && responseJson.articles.length > 0 ? responseJson.articles.map((articles) => ({
+        //   title: String(articles.title),
+        //   name: String(articles.souces[0].name),
+        //   description: String(articles.description),
+        //   url: String(articles.url),
+        //   category: String(articles.category),
+        //   language: String(articles.language),
+        // })) : [];
 
-        const sourcesArray = responseJson.sources && responseJson.sources.length > 0 ? responseJson.sources.map((source) => ({
-          id: String(source.id),
-          name: String(source.name),
-          description: String(source.description),
-          url: String(source.url),
-          category: String(source.category),
-          language: String(source.language),
-        })) : 
-        [];
-
-        console.log(sourcesArray);
-        return sourcesArray;
+        // console.log(sourcesArray);
+        return responseJson.articles;
       } catch (error) {
         console.error(error);
       }
