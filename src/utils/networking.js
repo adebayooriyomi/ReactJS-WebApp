@@ -1,8 +1,8 @@
 import {formatDate} from './utils'
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
-const dummyImageUrl = process.env.NEXT_PUBLIC_DUMMY_URL
+const baseURL = process.env.REACT_APP_BASE_URL
+const apiKey = process.env.REACT_APP_API_KEY
+const dummyImageUrl = process.env.REACT_DUMMY_URL
 
 export default {
   async fetchHeadlines(newsId) {
@@ -45,7 +45,6 @@ export default {
       try {
         const response = await fetch(fetchUrl);
         const responseJson = await response.json();
-        console.log(responseJson)
         return responseJson.articles;
       } catch (error) {
         console.error(error);
