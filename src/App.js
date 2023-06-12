@@ -16,6 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PublicIcon from '@material-ui/icons/Public';
 import AppsIcon from '@material-ui/icons/Apps';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import TopStories from './pages/TopStories'
 import Category from './pages/Category'
 import SelectCategory from './pages/SelectCategory';
@@ -72,14 +73,22 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>{
           [
-            {name: 'Top Stories', icon: PublicIcon}, 
-            {name: 'Category', icon: AppsIcon}
+            {name: 'Top Stories', icon: PublicIcon, url: '/Top%20Stories'}, 
+            {name: 'Category', icon: AppsIcon, url: '/Category'}, 
+            {name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/adebayooriyomi/ReactJS-WebApp'}
           ]
             .map((menu, key) => (
-            <ListItem button key={key} component={Link} to={"/" + menu.name}>
-              <ListItemIcon>{<menu.icon color="primary"/>}</ListItemIcon>
-              <ListItemText primary={menu.name} />
-            </ListItem>
+              menu.name === 'GitHub' 
+              ? 
+              <ListItem button key={key} component="a" href={menu.url} target="_blank" rel="noopener noreferrer">
+                <ListItemIcon>{<menu.icon color="primary"/>}</ListItemIcon>
+                <ListItemText primary={menu.name} />
+              </ListItem>
+              :
+              <ListItem button key={key} component={Link} to={menu.url}>
+                <ListItemIcon>{<menu.icon color="primary"/>}</ListItemIcon>
+                <ListItemText primary={menu.name} />
+              </ListItem>
           ))}
         </List>
     </div>
