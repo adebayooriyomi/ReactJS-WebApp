@@ -1,8 +1,6 @@
 # React JS Web Application -> Responsive News Feed
 
-<a href="http://oriyomiadebayo.com/projects/react/build/index.html#/" target="_blank">Click to Preview Website</a>
-
-<p>A News Feeds powered by https://newsapi.org/</p>
+<a href="https://react-js-web-app.vercel.app/" target="_blank">Click to Preview Website</a>
 
 <p><a target="_blank" rel="noopener noreferrer" href="http://oriyomiadebayo.com/projects/react/build/index.html#/"><img src="https://github.com/adebayooriyomi/ReactJS-WebApp/blob/master/src/images/screenshots.jpg" alt="screenshots of reactApp" style="max-width:100%;"></a></p>
 
