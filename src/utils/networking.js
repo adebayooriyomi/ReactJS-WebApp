@@ -1,8 +1,8 @@
 import {formatDate} from './utils'
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
-const dummyImageUrl = process.env.NEXT_PUBLIC_DUMMY_URL
+const baseURL = process.env.REACT_APP_BASE_URL
+const apiKey = process.env.REACT_APP_API_KEY
+const dummyImageUrl = process.env.REACT_DUMMY_URL
 
 export default {
   async fetchHeadlines(newsId) {
@@ -45,17 +45,6 @@ export default {
       try {
         const response = await fetch(fetchUrl);
         const responseJson = await response.json();
-        console.log(responseJson)
-        // const sourcesArray = responseJson.articles && responseJson.articles.length > 0 ? responseJson.articles.map((articles) => ({
-        //   title: String(articles.title),
-        //   name: String(articles.souces[0].name),
-        //   description: String(articles.description),
-        //   url: String(articles.url),
-        //   category: String(articles.category),
-        //   language: String(articles.language),
-        // })) : [];
-
-        // console.log(sourcesArray);
         return responseJson.articles;
       } catch (error) {
         console.error(error);
