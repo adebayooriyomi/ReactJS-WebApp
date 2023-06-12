@@ -28,12 +28,11 @@ const TopStories = ({ match }) => {
                 <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
                     Top Stories
                 </Typography>
-                <Grid item>
-                    <Grid container spacing={2}>
-                    {data.map((data, key) => (
-                        <Grid key={key} item>
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    {data && data.map((data, key) => (
+                        <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
                             <CardActionArea onClick={() => window.open(data.url, "_blank")}>
-                            <Card className={classes.card}>
+                            <Card>
                                 <CardMedia
                                     className={classes.media}
                                     image={data.urlToImage}
@@ -56,7 +55,6 @@ const TopStories = ({ match }) => {
                     ))}
                     </Grid>
                 </Grid>
-            </Grid>
         );
 }
 
