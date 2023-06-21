@@ -75,7 +75,7 @@ const Category = () => {
                 <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
                     Category
                 </Typography>
-                  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                  <Grid container>
                     {data.map((data, key) => (
                        <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
                             <Link style={{textDecoration:"none"}} to={`/SelectCategory/${data.id}`}>
