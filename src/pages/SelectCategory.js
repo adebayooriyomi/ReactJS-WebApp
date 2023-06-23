@@ -20,7 +20,6 @@ const SelectCategory = ({ match }) => {
 
     const {data, error, loading } = useNetwork(`${baseURL}/top-headlines?&lang=en&category=${category}&apikey=${apiKey}`)
 
-
     return (
         <Grid container className={classes.root}>
         <Typography style={{fontWeight:"bold", marginBottom: 20, textTransform: 'capitalize'}} color="primary" variant="h6">
