@@ -15,58 +15,7 @@ const Category = () => {
     const [data, setData] = useState([])
     
     useEffect(() => {
-        const newsList = [
-            {
-              id: 'business',
-              title: 'Business',
-              image: require('../images/business.jpg'),
-              icon: 'ios-globe'
-            },
-            {
-              id: 'entertainment',
-              title: 'Entertainment',
-              image: require('../images/entertainment.jpg'),
-              icon: 'ios-film'
-            },
-            {
-              id: 'general',
-              title: 'General',
-              image: require('../images/general.jpg'),
-              icon: 'logo-usd'
-            },
-            {
-              id: 'health',
-              title: 'Health',
-              image: require('../images/health.jpg'),
-              icon: 'ios-medkit'
-            },
-            {
-              id: 'science',
-              title: 'Science',
-              image: require('../images/science.jpg'),
-              icon: 'md-flask'
-            },
-            {
-              id: 'sports',
-              title: 'Sports',
-              image: require('../images/sports.jpg'),
-              icon: 'md-football'
-            },
-            {
-              id: 'technology',
-              title: 'Technology',
-              image: require('../images/technology.jpg'),
-              icon: 'ios-phone-portrait'
-            },
-            {
-              id: 'world',
-              title: 'World',
-              image: require('../images/world.jpg'),
-              icon: 'ios-phone-portrait'
-            },
-          ]
-
-            setData(newsList);
+      setData(newsList);
     }, []);
 
 
@@ -102,3 +51,54 @@ const Category = () => {
 }
 
 export default Category;
+
+const newsList = [
+  {
+    id: 'business',
+    title: 'Business',
+    image: require('../images/business.jpg'),
+    icon: 'ios-globe'
+  },
+  {
+    id: 'entertainment',
+    title: 'Entertainment',
+    image: require('../images/entertainment.jpg'),
+    icon: 'ios-film'
+  },
+  {
+    id: 'general',
+    title: 'General',
+    image: require('../images/general.jpg'),
+    icon: 'logo-usd'
+  },
+  {
+    id: 'health',
+    title: 'Health',
+    image: require('../images/health.jpg'),
+    icon: 'ios-medkit'
+  },
+  {
+    id: 'science',
+    title: 'Science',
+    image: require('../images/science.jpg'),
+    icon: 'md-flask'
+  },
+  {
+    id: 'sports',
+    title: 'Sports',
+    image: require('../images/sports.jpg'),
+    icon: 'md-football'
+  },
+  {
+    id: 'technology',
+    title: 'Technology',
+    image: require('../images/technology.jpg'),
+    icon: 'ios-phone-portrait'
+  },
+  {
+    id: 'world',
+    title: 'World',
+    image: require('../images/world.jpg'),
+    icon: 'ios-phone-portrait'
+  },
+]

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route, Link, HashRouter as Router} from "react-router-dom";
+import React, {useState} from 'react';
+import { Routes, Route, Link, BrowserRouter as Router} from "react-router-dom";
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,6 +21,9 @@ import TopStories from './pages/TopStories'
 import Category from './pages/Category'
 import SelectCategory from './pages/SelectCategory';
 import { Typography } from '@material-ui/core';
+import { SearchResults} from './pages/SearchResults'
+
+
 
 
 const drawerWidth = 240;
@@ -40,6 +43,15 @@ const useStyles = makeStyles(theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  sinput: {
+    height: '40px',
+    padding: '5px',
+    borderRadius: '5px'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -61,11 +73,21 @@ function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('')
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    window.location.href = `/SearchResults/${searchTerm}`
+  }
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value)
+  }
 
   const drawer = (
     <div>
@@ -85,7 +107,7 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary={menu.name} />
               </ListItem>
               :
-              <ListItem button key={key} component={Link} to={menu.url}>
+              <ListItem button key={key} component={Link} to={menu.url} onClick={handleDrawerToggle}>
                 <ListItemIcon>{<menu.icon color="primary"/>}</ListItemIcon>
                 <ListItemText primary={menu.name} />
               </ListItem>
@@ -99,7 +121,7 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.header}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -112,6 +134,9 @@ function ResponsiveDrawer(props) {
           <Typography style={{fontWeight: "bold"}} variant="h6" noWrap>
            World News
           </Typography>
+          <form onSubmit={handleSearch}>
+            <input type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for Topics..." className={classes.sinput}/>
+          </form>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -147,16 +172,13 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Switch>
-            <Route exact path="/" render={() => <div><TopStories /></div>} />
-            <Route path="/Top Stories" render={() => 
-              <div>
-                <TopStories />
-              </div>
-            }/>
-            <Route path="/Category" component={Category} />
-            <Route path="/SelectCategory/:id" component={SelectCategory} />
-          </Switch>
+          <Routes>
+              <Route path="/" element={<TopStories />} />
+              <Route path="/Top Stories" element={<TopStories />} />
+              <Route path="/Category" element={<Category />} />
+              <Route path="/SearchResults/:searchTerm" element={<SearchResults />} />
+              <Route path="/SelectCategory/:id" element={<SelectCategory />} />
+          </Routes>
       </main>
       
     </div>
