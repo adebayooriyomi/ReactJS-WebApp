@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import CardMedia from '@material-ui/core/CardMedia';
 import { Link } from 'react-router-dom';
 import useStyles from '../useStyles'
-
+import { Search } from '../components/Search'
 
 const Category = () => {
 
@@ -18,8 +18,9 @@ const Category = () => {
       setData(newsList);
     }, []);
 
-
     return (
+      <>
+    
             <Grid container className={classes.root}>
                 <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
                     Category
@@ -47,6 +48,7 @@ const Category = () => {
                     ))}
                   </Grid>
             </Grid>
+            </>
         );
 }
 
