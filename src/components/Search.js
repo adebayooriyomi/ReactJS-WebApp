@@ -31,5 +31,7 @@ export const Search = () => {
 const sinput = {
     height: '40px',
     padding: '5px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    webkitTextSizeAdjust: 'none',
+    textSizeAdjust: 'none',
 }

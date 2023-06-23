@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import CardMedia from '@material-ui/core/CardMedia';
 import { Link } from 'react-router-dom';
 import useStyles from '../useStyles'
-import { Search } from '../components/Search'
 
 const Category = () => {
 
@@ -19,37 +18,34 @@ const Category = () => {
     }, []);
 
     return (
-      <>
-    
-            <Grid container className={classes.root}>
-                <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
-                    Category
-                </Typography>
-                  <Grid container>
-                    {data.map((data, key) => (
-                       <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
-                            <Link style={{textDecoration:"none"}} to={`/SelectCategory/${data.id}`}>
-                              <CardActionArea>
-                                  <Card>                         
-                                      <CardMedia
-                                          className={classes.media}
-                                          image={data.image}
-                                          title={data.title}
-                                      />
-                                      <CardContent> 
-                                      <Typography style={{fontWeight:"bold", lineHeight: 1.5}}  variant="subtitle1">
-                                          {data.title}
-                                      </Typography>
-                                      </CardContent>
-                                  </Card>
-                              </CardActionArea>
-                            </Link>
-                        </Grid>
-                    ))}
+      <Grid container className={classes.root}>
+          <Typography style={{fontWeight:"bold", marginBottom: 20}} color="primary" variant="h6">
+              Category
+          </Typography>
+            <Grid container>
+              {data.map((data, key) => (
+                  <Grid key={key} item xs={12} sm={12} md={6} lg={3} style={{ padding: 10}}>
+                      <Link style={{textDecoration:"none"}} to={`/SelectCategory/${data.id}`}>
+                        <CardActionArea>
+                            <Card>                         
+                                <CardMedia
+                                    className={classes.media}
+                                    image={data.image}
+                                    title={data.title}
+                                />
+                                <CardContent> 
+                                <Typography style={{fontWeight:"bold", lineHeight: 1.5}}  variant="subtitle1">
+                                    {data.title}
+                                </Typography>
+                                </CardContent>
+                            </Card>
+                        </CardActionArea>
+                      </Link>
                   </Grid>
+              ))}
             </Grid>
-            </>
-        );
+      </Grid>
+    );
 }
 
 export default Category;

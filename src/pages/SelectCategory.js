@@ -6,10 +6,11 @@ import useStyles from '../useStyles'
 import {baseURL, apiKey, dummyImageUrl} from '../utils/client'
 import {NewsGrid} from '../components/NewsGrid';
 import Alert from '@mui/material/Alert';
+import {useParams} from 'react-router-dom'
 
-const SelectCategory = ({ match }) => {
-
-    const category = match.params.id
+const SelectCategory = () => {
+    
+    const {category} = useParams()
     const classes = useStyles();
 
     const [title, setTitle] = useState("")
