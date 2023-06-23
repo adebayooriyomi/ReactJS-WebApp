@@ -22,9 +22,7 @@ import Category from './pages/Category'
 import SelectCategory from './pages/SelectCategory';
 import { Typography } from '@material-ui/core';
 import { SearchResults} from './pages/SearchResults'
-
-
-
+import { Search } from './components/Search'
 
 const drawerWidth = 240;
 
@@ -48,11 +46,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  sinput: {
-    height: '40px',
-    padding: '5px',
-    borderRadius: '5px'
-  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -74,22 +67,13 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('')
+ 
 
   const mediaQuery = window.matchMedia('(max-width: 767px)');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    window.location.replace(`/SearchResults/${searchTerm}`)
-  }
-
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value)
-  }
 
   const drawer = (
     <div>
@@ -136,9 +120,7 @@ function ResponsiveDrawer(props) {
           <Typography style={{fontWeight: "bold"}} variant="h6" noWrap>
            World News
           </Typography>
-          <form onSubmit={handleSearch}>
-            <input type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for Topics..." className={classes.sinput}/>
-          </form>
+          <Search />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

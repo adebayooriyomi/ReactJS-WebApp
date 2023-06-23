@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid'
 import useStyles from '../useStyles'
 import {baseURL, apiKey, dummyImageUrl} from '../utils/client'
 import {NewsGrid} from '../components/NewsGrid'
-
-
 import Alert from '@mui/material/Alert';
 
 
