@@ -161,7 +161,7 @@ function ResponsiveDrawer(props) {
               <Route path="/Top Stories" element={<TopStories />} />
               <Route path="/Category" element={<Category />} />
               <Route path="/SearchResults/:searchTerm" element={<SearchResults />} />
-              <Route path="/SelectCategory/:id" element={<SelectCategory />} />
+              <Route path="/SelectCategory/:category" element={<SelectCategory />} />
           </Routes>
       </main>
       
