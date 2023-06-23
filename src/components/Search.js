@@ -34,4 +34,5 @@ const sinput = {
     borderRadius: '5px',
     webkitTextSizeAdjust: 'none',
     textSizeAdjust: 'none',
+    fontSize: '16px'
 }
