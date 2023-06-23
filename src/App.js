@@ -76,6 +76,8 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('')
 
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -107,7 +109,7 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary={menu.name} />
               </ListItem>
               :
-              <ListItem button key={key} component={Link} to={menu.url} onClick={handleDrawerToggle}>
+              <ListItem button key={key} component={Link} to={menu.url} onClick={mediaQuery.matches ? handleDrawerToggle : null}>
                 <ListItemIcon>{<menu.icon color="primary"/>}</ListItemIcon>
                 <ListItemText primary={menu.name} />
               </ListItem>
