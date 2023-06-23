@@ -77,14 +77,14 @@ function ResponsiveDrawer(props) {
   const [searchTerm, setSearchTerm] = useState('')
 
   const mediaQuery = window.matchMedia('(max-width: 767px)');
-  
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    window.location.href = `/SearchResults/${searchTerm}`
+    window.location.replace(`/SearchResults/${searchTerm}`)
   }
 
   const handleInputChange = (e) => {
